@@ -97,5 +97,5 @@ Rails.application.configure do
     password: ENV[ "GMAIL_PASSWORD" ]
   }
 
-  config.action_mailer.default_url_options = { host: 'dx871scsd9.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'qrptickets.herokuapp.com' }
 end
