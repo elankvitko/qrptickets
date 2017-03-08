@@ -1,5 +1,6 @@
 class ContactMailer < ApplicationMailer
-  def new_contact( name, email, body )
+  def new_contact( ticket_number, name, email, body )
+    @ticket_number = ticket_number
     @name = name
     @email = email
     @body = body

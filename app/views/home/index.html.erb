@@ -22,9 +22,15 @@
 
 				<br>
 
+				<label for="facility">Location</label>
+				<input type="text" name="facility" placeholder="Ex: QuickRX - Coney Island">
+
+				<br>
+
 				<label for="Body">Body</label>
 
 				<textarea name="body" rows="8" cols="80"></textarea>
+				<input type="hidden" name="ticket_number" value="<%= @ticket_number %>">
 
 				<br>
 
@@ -47,7 +53,8 @@
 		var type = target.parentElement.method
 		var data = 'name=' + target.parentElement[ 0 ].value +
 							 '&email=' + target.parentElement[ 1 ].value +
-							 '&body=' + target.parentElement[ 2 ].value
+							 '&facility=' + target.parentElement[ 2 ].value +
+							 '&body=' + target.parentElement[ 3 ].value
 
 
 		$.ajax({
