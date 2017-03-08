@@ -1,0 +1,62 @@
+<!-- Header -->
+	<%= render 'layouts/header' %>
+
+<!-- One -->
+
+<!-- Three -->
+	<section id="two" class="wrapper style1 special change-bgs">
+		<div class="inner">
+			<header>
+				<h2>Request A Ticket</h2>
+				<p>your response will be handled in a timely manner</p>
+			</header>
+
+			<form class="contact-form" action="/contact" method="post">
+				<label for="name">Name</label>
+				<input type="text" name="name" placeholder="John Doe">
+
+				<br>
+
+				<label for="email">Email</label>
+				<input type="text" name="email" placeholder="john@doe.com">
+
+				<br>
+
+				<label for="Body">Body</label>
+
+				<textarea name="body" rows="8" cols="80"></textarea>
+
+				<br>
+
+				<input type="submit" value="Submit!" class='contact-click'>
+			</form>
+			<div class="flex flex-4">
+			</div>
+		</div>
+	</section>
+
+<!-- Footer -->
+	<%= render 'layouts/footer' %>
+
+<script type="text/javascript">
+	$( 'form input.contact-click' ).on( 'click', function( e ) {
+		e.preventDefault();
+
+		var target = e.target
+		var url = target.parentElement.action
+		var type = target.parentElement.method
+		var data = 'name=' + target.parentElement[ 0 ].value +
+							 '&email=' + target.parentElement[ 1 ].value +
+							 '&body=' + target.parentElement[ 2 ].value
+
+
+		$.ajax({
+			type: type,
+			url: url,
+			data: data
+		}).done( function( response ) {
+			$( 'form' ).hide();
+			$( '#two div.inner' ).append( response );
+		});
+	});
+</script>
