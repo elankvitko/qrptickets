@@ -22,8 +22,23 @@
 
 				<br>
 
-				<label for="facility">Location</label>
-				<input type="text" name="facility" placeholder="Ex: QuickRX - Coney Island">
+				<label for="facility">Choose a Location</label>
+				<select name="facility">
+					<option value="Corportate Office">Corporate Office</option>
+				  <option value="Coney Island Branac">Coney Island Branac</option>
+				  <option value="Bedstuy">Bedstuy</option>
+				  <option value="1413">1413</option>
+				  <option value="Blondell">Blondell</option>
+					<option value="Audubon">Audubon</option>
+					<option value="96th St.">96th St.</option>
+					<option value="Columbus">Columbus</option>
+					<option value="Lexington Ave.">Lexington Ave.</option>
+					<option value="2nd Ave.">2nd Ave.</option>
+					<option value="Huntington">Huntington</option>
+					<option value="CUC-Huntington">CUC-Huntington</option>
+					<option value="CUC-Upper East Side">CUC-Upper East Side</option>
+					<option value="CUC-Upper West Side">CUC-Upper West Side</option>
+				</select>
 
 				<br>
 
@@ -56,6 +71,8 @@
 							 '&facility=' + target.parentElement[ 2 ].value +
 							 '&body=' + target.parentElement[ 3 ].value +
 							 '&ticket_number=' + target.parentElement[ 4 ].value
+
+							 debugger;
 
 
 		$.ajax({
