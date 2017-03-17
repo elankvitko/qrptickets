@@ -7,7 +7,7 @@ class ContactController < ApplicationController
       ws = session.spreadsheet_by_key("1aYKq_4dC24KbZsM7oG76ziVE0hXnQLJUzf1PI5etks4").worksheets[0]
       idx = ws.rows.count + 1
       val_idx = 1
-      binding.pry
+      
       @ticket.attributes.each do | key, val |
         ws[ idx, val_idx ] = val
         val_idx += 1
