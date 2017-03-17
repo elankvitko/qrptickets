@@ -12,7 +12,7 @@ class ContactController < ApplicationController
         next if key == "id"
         next if key == "created_at"
         next if key == "updated_at"
-        binding.pry
+        
         if key == 'body'
           skip_idx = val_idx + 1
           ws[ idx, skip_idx ] = val
