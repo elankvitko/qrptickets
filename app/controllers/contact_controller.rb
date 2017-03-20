@@ -29,7 +29,7 @@ class ContactController < ApplicationController
 
       ws.save
 
-      ContactMailer.new_contact( params[ 'ticket_number' ], params[ 'name' ], params[ 'email' ], params[ 'facility' ], params[ 'body' ] ).deliver_now
+      # ContactMailer.new_contact( params[ 'ticket_number' ], params[ 'name' ], params[ 'email' ], params[ 'facility' ], params[ 'body' ] ).deliver_now
       render partial:'success', layout: false
     end
   end
