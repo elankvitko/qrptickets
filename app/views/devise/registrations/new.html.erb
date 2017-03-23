@@ -1,29 +1,52 @@
-<h2>Sign up</h2>
+<!-- Content Wrapper -->
+<div class="login-wrapper">
+    <div class="container-center lg">
+        <div class="panel panel-bd">
+            <div class="panel-heading">
+                <div class="view-header">
+                    <div class="header-icon">
+                        <i class="pe-7s-unlock"></i>
+                    </div>
+                    <div class="header-title">
+                        <h3>Register</h3>
+                        <small><strong>Please enter the following information</strong></small>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <%= f.label :full_name %>
+                    <%= f.text_field :full_name, id: "username", class: "form-control", autofocus: true %>
+                  </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+                  <div class="form-group col-lg-6">
+                    <%= f.label :email %><br />
+                    <%= f.email_field :email, id: "email", class: "form-control email-pickup" %>
+                  </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+                  <div class="form-group col-lg-6">
+                    <%= f.label :password %>
+                    <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em>
+                    <% end %><br />
+                    <%= f.password_field :password, id: "password", class: "form-control", autocomplete: "off" %>
+                  </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+                  <div class="form-group col-lg-6">
+                    <%= f.label :password_confirmation %><br />
+                    <%= f.password_field :password_confirmation, id: "repeatpassword", class: "form-control", autocomplete: "off" %>
+                  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+                  <div>
+                    <%= f.submit "Register", class: "btn btn-warning" %>
+                    <%= link_to 'Login', new_user_session_path, class: "btn btn-primary" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>
