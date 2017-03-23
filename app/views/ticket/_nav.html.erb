@@ -1,0 +1,35 @@
+<ul class="sidebar-menu">
+    <li class="header">MAIN NAVIGATION</li>
+
+    <li>
+      <%= link_to( root_path ) do %>
+        <i class="ti-home"></i> <span>Dashboard</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      <% end %>
+    </li>
+
+    <li class="active">
+      <%= link_to( ticket_index_path ) do %>
+        <i class="ti-layout"></i> <span>My Tickets</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to( destroy_user_session_path, :method => 'delete' ) do %>
+        <i class="fa fa-sign-out"></i> <span>Log Out</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      <% end %>
+    </li>
+
+    <li class="header">LABELS</li>
+    <li><a href="#"><i class="fa fa-circle color-green"></i> <span>Important</span></a></li>
+    <li><a href="#"><i class="fa fa-circle color-red"></i> <span>Warning</span></a></li>
+    <li><a href="#"><i class="fa fa-circle color-yellow"></i> <span>Information</span></a></li>
+</ul>

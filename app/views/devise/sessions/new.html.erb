@@ -1,0 +1,35 @@
+<!-- Content Wrapper -->
+<div class="login-wrapper">
+    <div class="container-center">
+        <div class="panel panel-bd">
+            <div class="panel-heading">
+                <div class="view-header">
+                    <div class="header-icon">
+                        <i class="pe-7s-unlock"></i>
+                    </div>
+                    <div class="header-title">
+                        <h3>Login</h3>
+                        <small><strong>Please enter your credentials to login.</strong></small>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="form-group">
+                      <%= f.label :email, class: "control-label" %><br />
+                      <%= f.email_field :email, class: "form-control", placeholder: "example@qrpgroup.com" %>
+                  </div>
+                  <div class="form-group">
+                      <%= f.label :password, class: "control-label" %><br />
+                      <%= f.password_field :password, class: "form-control", id: "password", placeholder: "******" %>
+                  </div>
+                  <div>
+                    <%= f.submit "Log in", class: "btn btn-primary" %>
+                    <%= link_to "Register", new_user_registration_path, class: "btn btn-warning" %>
+                  </div>
+                  <%= render "devise/shared/links" %>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>

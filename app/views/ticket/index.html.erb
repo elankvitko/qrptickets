@@ -1,0 +1,87 @@
+<!-- Site wrapper -->
+<div class="wrapper">
+    <%= render 'ticket/header' %>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <%= render 'layouts/content_header' %>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                  <div class='ct-link'>
+                    <%= link_to '+ Create A Ticket', new_ticket_path %>
+                  </div>
+                    <div class="panel panel-bd lobidrag">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Filter</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <input type="text" class="form-control input-sm m-b-15" id="filter" placeholder="Search in table">
+                                <table id="example1" class="footable table table-bordered toggle-arrow-tiny" data-page-size="20" data-filter=#filter>
+                                    <thead>
+                                        <tr>
+                                            <th>Ticket Number</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Location</th>
+                                            <th>Status</th>
+                                            <th data-hide="all">Issue</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% @tickets.each do | ticket | %>
+                                        <tr class='view-change'>
+                                            <td><%= ticket.ticket_number %></td>
+                                            <td><%= ticket.user.full_name %></td>
+                                            <td><%= ticket.user.email %></td>
+                                            <td><%= ticket.location %></td>
+                                            <td><%= ticket.status %></td>
+                                            <td><%= ticket.body %></td>
+                                        </tr>
+                                      <% end %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6">
+                                                <ul class="pagination pull-right"></ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+</div>
+
+<script>
+  "use strict"; // Start of use strict
+
+  // Footable example 2
+  $('#example1').footable();
+
+  $( 'tr.view-change' ).on( 'click', function( e ) {
+    var child = $( e.target.parentElement ).children()[ 0 ]
+    var ticket_number = $( child ).html().slice( -1 )
+    var url = "/ticket/" + ticket_number + "/edit"
+    var type = 'get'
+    var data = "viewed=true"
+
+    $.ajax({
+      type: type,
+      url: url,
+      data: data
+    }).done( function( response ) {
+      return true
+    });
+  });
+</script>

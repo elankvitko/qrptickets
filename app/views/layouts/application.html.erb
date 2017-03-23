@@ -4,12 +4,38 @@
     <title>TicketService</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= stylesheet_link_tag    'style.css', media: 'all' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'lobipanel.css', media: 'all' %>
+    <%= stylesheet_link_tag    'flash.css', media: 'all' %>
+    <%= stylesheet_link_tag    'font-awesome.min.css', media: 'all' %>
+    <%= stylesheet_link_tag    'pe-icon-7-stroke.css', media: 'all' %>
+    <%= stylesheet_link_tag    'themify-icons.css', media: 'all' %>
+    <%= stylesheet_link_tag    'toastr.css', media: 'all' %>
+    <%= stylesheet_link_tag    'bootstrap-wysihtml5.css', media: 'all' %>
+    <%= stylesheet_link_tag    'footable.core.min.css', media: 'all' %>
+    <%= stylesheet_link_tag    'emojionearea.min.css', media: 'all' %>
+    <%= stylesheet_link_tag    'monthly.css', media: 'all' %>
+    <%= stylesheet_link_tag    'styleBD.css', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'lobipanel.min.js' %>
+    <%= javascript_include_tag 'wysihtml5.js' %>
+    <%= javascript_include_tag 'bootstrap-wysihtml5.js' %>
+    <%= javascript_include_tag 'jquery.slimscroll.min.js' %>
+    <%= javascript_include_tag 'fastclick.min.js' %>
+    <%= javascript_include_tag 'frame.js' %>
+    <%= javascript_include_tag 'toastr.min.js' %>
+    <%= javascript_include_tag 'sparkline.min.js' %>
+    <%= javascript_include_tag 'waypoints.js' %>
+    <%= javascript_include_tag 'jquery.counterup.min.js' %>
+    <%= javascript_include_tag 'emojionearea.min.js' %>
+    <%= javascript_include_tag 'monthly.js' %>
+    <%= javascript_include_tag 'dashboard.js' %>
+    <%= javascript_include_tag 'footable.all.min.js' %>
+
   </head>
 
-  <body>
+  <body class="hold-transition sidebar-mini">
     <%= yield %>
   </body>
 </html>

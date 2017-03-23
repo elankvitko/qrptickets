@@ -1,0 +1,76 @@
+<!-- Site wrapper -->
+<div class="wrapper">
+  <%= render 'ticket/header' %>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <%= render 'layouts/content_header' %>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-bd lobidrag">
+                        <div class="panel-heading">
+                            <div class="panel-title issue-heading">
+                                <h4>What is your issue?</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                          <%= form_for @ticket, :url => '/ticket' do |f| %>
+                            <div class="form-group">
+                              <%= f.hidden_field :user_id, value: current_user.id %>
+                              <%= f.hidden_field :ticket_number, value: @ticket_number %>
+                              <%= f.text_area :body, id: 'some-textarea', class: "form-control", rows: "15", placeholder: "Enter text ..." %>
+                              <br>
+                              <label for="location">Choose a Location</label>
+                              <%= f.select :location, [
+                                                        [ 'Corporate Office' ],
+                                                        [ 'Coney Island Branac' ],
+                                                        [ 'Bedstuy' ],
+                                                        [ '1413' ],
+                                                        [ 'Blondell' ],
+                                                        [ 'Audubon' ],
+                                                        [ '96th St.' ],
+                                                        [ 'Columbus' ],
+                                                        [ 'Lexington Ave.' ],
+                                                        [ '2nd Ave.' ],
+                                                        [ 'Huntington' ],
+                                                        [ 'CUC-Huntington' ],
+                                                        [ 'CUC-Upper East Side' ],
+                                                        [ 'CUC-Upper West Side' ] ]
+                                                        %>
+                            <br>
+                            <%= f.submit 'Submit', class: "btn btn-primary submit-issue" %>
+                            </div>
+                          <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</div>
+
+<script>
+    "use strict"; // Start of use strict
+    //bootstrap-wysihtml5
+    $('#some-textarea').wysihtml5();
+
+
+    $( 'form' ).on( 'submit', function( e ) {
+      e.preventDefault();
+      var target = e.target
+
+      var url = target.action;
+      var type = target.method;
+      var data = $( target ).serialize();
+
+      $.ajax({
+        type: type,
+        url: url,
+        data: data
+      }).done( function( response ) {
+      });
+    });
+</script>

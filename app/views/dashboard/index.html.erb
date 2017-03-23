@@ -1,0 +1,203 @@
+<!-- Site wrapper -->
+<div class="wrapper">
+    <%= render 'dashboard/header' %>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <%= render 'layouts/content_header' %>
+        <!-- Main content -->
+        <section class="content">
+          <% if current_user.admin %>
+            <%= render 'dashboard/admin_top' %>
+          <% end %>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="panel panel-bd lobidisable">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Messages</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="message_inner">
+                                <div class="message_widgets">
+                                    <!-- <a href="#">
+                                        <div class="inbox-item">
+                                            <div class="inbox-item-img"><%= image_tag "avatar.png", class: 'img-circle' %></div>
+                                            <strong class="inbox-item-author">Naeem Khan</strong>
+                                            <span class="inbox-item-date">-13:40 PM</span>
+                                            <p class="inbox-item-text">Hey! there I'm available...</p>
+                                            <span class="profile-status available pull-right"></span>
+                                        </div>
+                                    </a> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- calender -->
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                    <div class="panel panel-bd lobidisable">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Calender</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- monthly calender -->
+                            <div class="monthly_calender">
+                                <div class="monthly" id="m_calendar"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-4 hidden-sm hidden-md">
+                    <div class="social-widget">
+                        <ul>
+                            <li>
+                                <div class="fb_inner">
+                                    <i class="fa fa-facebook"></i>
+                                    <span class="sc-num">5,791</span>
+                                    <small>Fans</small>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="twitter_inner">
+                                    <i class="fa fa-twitter"></i>
+                                    <span class="sc-num">691</span>
+                                    <small>Followers</small>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="g_plus_inner">
+                                    <i class="fa fa-google-plus"></i>
+                                    <span class="sc-num">147</span>
+                                    <small>Followers</small>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dribble_inner">
+                                    <i class="fa fa-dribbble"></i>
+                                    <span class="sc-num">3,485</span>
+                                    <small>Followers</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div> <!-- /.row -->
+        </section> <!-- /.content -->
+    </div> <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+</div>
+<!-- ./wrapper -->
+<%= javascript_include_tag 'lobipanel.min.js' %>
+<script>
+  "use strict"; // Start of use strict
+
+  // notification
+  setTimeout(function () {
+      toastr.options = {
+          closeButton: true,
+          progressBar: true,
+          showMethod: 'slideDown',
+          timeOut: 4000
+//                        positionClass: "toast-top-left"
+      };
+      toastr.success('QuickRx Ticket System', 'Welcome To');
+
+  }, 1300);
+
+  //counter
+  $('.count-number').counterUp({
+      delay: 10,
+      time: 5000
+  });
+
+  //Chat list
+  $('.chat_list').slimScroll({
+      size: '3px',
+      height: '305px'
+  });
+
+  // Message
+  $('.message_inner').slimScroll({
+      size: '3px',
+      height: '320px'
+//                    position: 'left'
+  });
+
+  //emojionearea
+  $(".emojionearea").emojioneArea({
+      pickerPosition: "top",
+      tonesStyle: "radio"
+  });
+
+  //monthly calender
+  $('#m_calendar').monthly({
+      mode: 'event',
+      //jsonUrl: 'events.json',
+      //dataType: 'json'
+      xmlUrl: 'events.xml'
+  });
+
+  //Sparklines Charts
+  $('.sparkline1').sparkline([4, 6, 7, 7, 4, 3, 2, 4, 6, 7, 4, 6, 7, 7, 4, 3, 2, 4, 6, 7, 7, 4, 3, 1, 5, 7, 6, 6, 5, 5, 4, 4, 3, 3, 4, 4, 5], {
+      type: 'bar',
+      barColor: '#37a000',
+      height: '35',
+      barWidth: '3',
+      barSpacing: 2
+  });
+
+  $(".sparkline2").sparkline([-8, 2, 4, 3, 5, 4, 3, 5, 5, 6, 3, 9, 7, 3, 5, 6, 9, 5, 6, 7, 2, 3, 9, 6, 6, 7, 8, 10, 15, 16, 17, 15], {
+      type: 'line',
+      height: '35',
+      width: '100%',
+      lineColor: '#37a000',
+      fillColor: '#fff'
+  });
+
+  $(".sparkline3").sparkline([2, 5, 3, 7, 5, 10, 3, 6, 5, 7], {
+      type: 'line',
+      height: '35',
+      width: '100%',
+      lineColor: '#37a000',
+      fillColor: '#fff'
+  });
+
+  $(".sparkline4").sparkline([10, 34, 13, 33, 35, 24, 32, 24, 52, 35], {
+      type: 'line',
+      height: '35',
+      width: '100%',
+      lineColor: '#37a000',
+      fillColor: 'rgba(55, 160, 0, 0.7)'
+  });
+
+  $(".sparkline5").sparkline([4, 2], {
+      type: 'pie',
+      sliceColors: ['#37a000', '#2c3136']
+  });
+
+  $(".sparkline6").sparkline([3, 2], {
+      type: 'pie',
+      sliceColors: ['#37a000', '#2c3136']
+  });
+
+  $(".sparkline7").sparkline([4, 1], {
+      type: 'pie',
+      sliceColors: ['#37a000', '#2c3136']
+  });
+
+  $(".sparkline8").sparkline([1, 3], {
+      type: 'pie',
+      sliceColors: ['#37a000', '#2c3136']
+  });
+
+  $(".sparkline9").sparkline([3, 5], {
+      type: 'pie',
+      sliceColors: ['#37a000', '#2c3136']
+  });
+</script>
