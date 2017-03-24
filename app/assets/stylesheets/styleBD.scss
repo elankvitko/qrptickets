@@ -6111,6 +6111,7 @@ pre .arg {
 .border-message-me p {
   float: right;
   clear: both;
+  line-height: 25px;
 }
 
 .border-message-recipient {
@@ -6120,6 +6121,10 @@ pre .arg {
   line-height: 1px;
   width: 33%;
   margin-bottom: 10px
+}
+
+.border-message-recipient p {
+  line-height: 25px;
 }
 
 .reply-to {
