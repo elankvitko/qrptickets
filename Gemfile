@@ -23,7 +23,9 @@ gem 'coffee-rails', '~> 4.2'
 
 gem 'google_drive'
 gem 'bootstrap'
+gem 'chosen-rails'
 gem 'devise'
+gem 'mailboxer'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -44,6 +46,7 @@ gem 'pry-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem "better_errors"
 end
 
 group :development do

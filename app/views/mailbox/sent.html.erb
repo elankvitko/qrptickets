@@ -1,0 +1,12 @@
+<div class="wrapper">
+  <%= render 'ticket/header' %>
+
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <%= render 'layouts/content_header' %>
+    <!-- Main content -->
+    <section class="content">
+      <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @sent } %>
+    </section>
+  </div>
+</div>

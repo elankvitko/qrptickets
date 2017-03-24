@@ -1,0 +1,65 @@
+<div class="wrapper">
+  <%= render 'mailbox/header' %>
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <%= render 'layouts/content_header' %>
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="mailbox">
+                        <div class="mailbox-header">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <div class="inbox-avatar"><%= image_tag "avatar.png", class: "img-circle border-green" %>
+                                        <div class="inbox-avatar-text hidden-xs hidden-sm">
+                                            <div class="avatar-name"><%= current_user.full_name %></div>
+                                            <div><small>Mailbox</small></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <div class="inbox-toolbar btn-toolbar">
+                                        <div class="btn-group">
+                                          <%= link_to( new_conversation_path, class: "btn btn-success" ) do %>
+                                            <span class="fa fa-pencil-square-o make-white"></span>
+                                          <% end %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mailbox-body">
+                            <div class="row m-0">
+                                <div class="col-sm-3 p-0 inbox-nav hidden-xs hidden-sm">
+                                    <div class="mailbox-sideber">
+                                        <div class="profile-usermenu">
+                                            <h6>Mailbox</h6>
+                                            <%= render 'mailbox/trash_nav' %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-9 p-0 inbox-mail">
+                                    <div class="mailbox-content">
+                                      <% @trash.each do | mail | %>
+                                        <% if !mail.recipients.select { |obj| obj.full_name != current_user.full_name }.empty? %>
+                                          <%= link_to( conversation_path( mail.id ), class: "inbox_item unread" ) do %>
+                                            <div class="inbox-avatar">
+                                              <%= image_tag "avatar.png", class: "border-green hidden-xs hidden-sm" %>
+                                              <div class="inbox-avatar-text">
+                                                  <div class="avatar-name"><%= mail.recipients.select { |obj| obj.full_name != current_user.full_name }.first.full_name %></div>
+                                                  <div><small><span class="bg-green badge avatar-text">></span><span><strong>Subject:</strong><span> <%= mail.subject %></span></span></small></div>
+                                              </div>
+                                            </div>
+                                          <% end %>
+                                        <% end %>
+                                      <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- /.content -->
+    </div> <!-- /.content-wrapper -->
+</div> <!-- ./wrapper -->

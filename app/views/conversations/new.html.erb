@@ -1,0 +1,78 @@
+<div class="wrapper">
+  <%= render 'conversations/header' %>
+  <div class="content-wrapper">
+      <%= render 'layouts/content_header' %>
+      <section class="content">
+          <div class="row">
+              <div class="col-sm-12">
+                  <div class="mailbox">
+                      <div class="mailbox-header">
+                          <div class="row">
+                              <div class="col-xs-4">
+                                  <div class="inbox-avatar"><%= image_tag 'avatar.png', class: "img-circle border-green" %>
+                                      <div class="inbox-avatar-text hidden-xs hidden-sm">
+                                          <div class="avatar-name"><%= current_user.full_name %></div>
+                                          <div><small>Mailbox</small></div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-xs-8">
+                                  <div class="inbox-toolbar btn-toolbar">
+                                      <div class="btn-group">
+                                          <a href="mailbox.html" class="btn btn-default"><span class="fa fa-long-arrow-left"></span></a>
+                                          <a href="" class="hidden-xs hidden-sm btn btn-default"><span class="fa fa-reply-all"></span></a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="mailbox-body">
+                          <div class="row m-0">
+                              <div class="col-sm-3 p-0 inbox-nav hidden-xs hidden-sm">
+                                  <div class="mailbox-sideber">
+                                      <div class="profile-usermenu">
+                                          <h6>Mailbox</h6>
+                                          <%= render 'mailbox/inbox_nav' %>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-12 col-md-9 p-0 inbox-mail p-20">
+                                <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
+                                    <div class="form-group">
+                                      <%= f.label :recipients %>
+                                      <%= f.select(:recipients, User.all.collect {|p| [ p.full_name, p.id ] }, {}, { multiple: false , class: "form-control" })%>
+                                    </div>
+                                    <div class="form-group">
+                                      <%= f.label :subject %>
+                                      <%= f.text_field :subject, placeholder: "Subject", class: "form-control" %>
+                                    </div>
+                                    <div id="summernote">
+                                      <%= f.label :message %>
+                                      <%= f.text_area :body, class: 'form-control',placeholder: "Type your message here", rows: 10  %>
+                                    </div>
+
+                                    <div class="btn-group pull-right">
+                                      <%= f.submit "SEND", class: "btn btn-success" %>
+                                    </div>
+                                <% end %>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section> <!-- /.content -->
+  </div>
+</div>
+
+
+<!-- <script>
+  "use strict"; // Start of use strict
+  //summernote
+  $('#summernote').summernote({
+      height: 200, // set editor height
+      minHeight: null, // set minimum height of editor
+      maxHeight: null, // set maximum height of editor
+      focus: true                  // set focus to editable area after initializing summernote
+  });
+</script> -->

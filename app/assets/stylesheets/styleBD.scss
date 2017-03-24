@@ -6093,3 +6093,40 @@ pre .arg {
 .email-pickup {
   margin-top: -28px;
 }
+
+.border-message-me {
+  border: 1px solid #ccc;
+  padding: 5px 20px;
+  line-height: 1px;
+  float: right;
+  width: 33%;
+  clear: both;
+  margin-bottom: 10px;
+}
+
+.border-message-me h3 {
+  float: right;
+}
+
+.border-message-me p {
+  float: right;
+  clear: both;
+}
+
+.border-message-recipient {
+  clear: both;
+  border: 1px solid #ccc;
+  padding: 5px 20px;
+  line-height: 1px;
+  width: 33%;
+  margin-bottom: 10px
+}
+
+.reply-to {
+  clear: both;
+  margin-top: 30px;
+}
+
+.make-white {
+  color: #fff
+}
