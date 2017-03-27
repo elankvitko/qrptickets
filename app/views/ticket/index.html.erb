@@ -71,7 +71,9 @@
 
   $( 'tr.view-change' ).on( 'click', function( e ) {
     var child = $( e.target.parentElement ).children()[ 0 ]
-    var ticket_number = $( child ).html().slice( -1 )
+    var stringy = $( child ).html();
+    var ticket_number = parseInt(stringy.replace(/[^0-9\.]/g, ''), 10).toString();
+    debugger;
     var url = "/ticket/" + ticket_number + "/edit"
     var type = 'get'
     var data = "viewed=true"
