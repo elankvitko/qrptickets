@@ -6,11 +6,13 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    binding.pry
     @unread = mailbox.inbox(:unread => true).count
     recipients = User.where(id: conversation_params[:recipients])
     conversation = current_user.send_message(recipients, conversation_params[:body], conversation_params[:subject]).conversation
     flash[:success] = "Your message was successfully sent!"
+    name = conversation.recipients.select { |obj| obj != current_user }[ 0 ].full_name
+    email = conversation.recipients.select { |obj| obj != current_user }[ 0 ].email
+    NotificationMailer.new_notification( name, email ).deliver_now
     redirect_to conversation_path(conversation)
   end
 
