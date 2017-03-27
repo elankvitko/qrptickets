@@ -1,0 +1,36 @@
+<!-- Site wrapper -->
+<div class="wrapper">
+    <%= render 'ticket/header' %>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <%= render 'layouts/content_header' %>
+        <!-- Main content -->
+
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-bd lobidrag">
+                        <div class="panel-heading">
+                            <div class="panel-title issue-heading">
+                                <h4>Upload Your Image</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                          <%= form_for @user do |f| %>
+                            <div class="form-group">
+                              <%= f.hidden_field :user_id, value: current_user.id %>
+                              <%= f.file_field :picture %>
+                              <%= f.submit 'Submit', class: "btn btn-primary submit-pic" %>
+                            </div>
+                          <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- /.content -->
+
+    </div>
+    <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+</div>

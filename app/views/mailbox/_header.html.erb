@@ -11,9 +11,13 @@
     <div class="sidebar">
         <!-- Sidebar user panel -->
         <div class="user-panel text-center">
-            <div class="image">
+          <div class="image">
+            <% if current_user.picture_url != "" %>
+              <img class="img-circle" src="<%= current_user.picture_url %>">
+            <% else %>
               <%= image_tag "avatar.png", class: 'img-circle' %>
-            </div>
+            <% end %>
+          </div>
             <div class="info">
                 <p><%= current_user.full_name %></p>
             </div>

@@ -26,6 +26,7 @@ gem 'bootstrap'
 gem 'chosen-rails'
 gem 'devise'
 gem 'mailboxer'
+gem 'cloudinary'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

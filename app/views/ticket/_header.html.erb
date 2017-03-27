@@ -12,7 +12,11 @@
         <!-- Sidebar user panel -->
         <div class="user-panel text-center">
             <div class="image">
-              <%= image_tag "avatar.png", class: 'img-circle' %>
+              <% if current_user.picture_url != "" %>
+                <img class="img-circle" src="<%= current_user.picture_url %>">
+              <% else %>
+                <%= image_tag "avatar.png", class: 'img-circle' %>
+              <% end %>
             </div>
             <div class="info">
                 <p><%= current_user.full_name %></p>

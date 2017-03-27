@@ -6,6 +6,11 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  def upload_pic( image )
+    image = Cloudinary::Uploader.upload( Rails.root.join( 'public', 'uploads', image ) )
+    image[ 'url' ]
+  end
+
   private
 
   def mailbox

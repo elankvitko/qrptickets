@@ -24,7 +24,15 @@
                                   <% @inbox.each do | mail | %>
                                     <%= link_to( conversation_path( mail ) ) do %>
                                       <div class="inbox-item">
-                                        <div class="inbox-item-img"><%= image_tag "avatar.png", class: "img-circle" %></div>
+                                        <div class="inbox-item-img">
+                                          <% if mail.recipients.select { |obj| obj != current_user }.empty? %>
+                                            <%= image_tag "avatar.png", class: "img-circle" %>
+                                          <% elsif mail.recipients.select { |obj| obj != current_user }[ 0 ].picture_url != "" %>
+                                            <img src="<%= mail.recipients.select { |obj| obj != current_user }[ 0 ].picture_url %>" alt="">
+                                          <% else %>
+                                            <%= image_tag "avatar.png", class: "img-circle" %>
+                                          <% end %>
+                                        </div>
                                         <strong class="inbox-item-author"><%= mailbox.inbox.first.recipients.select { |message| message.full_name != current_user.full_name }[ 0 ].full_name %></strong>
                                         <p class="inbox-item-text">Subject: <%= mail.subject %></p>
                                       </div>

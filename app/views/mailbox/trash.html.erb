@@ -10,12 +10,17 @@
                         <div class="mailbox-header">
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <div class="inbox-avatar"><%= image_tag "avatar.png", class: "img-circle border-green" %>
-                                        <div class="inbox-avatar-text hidden-xs hidden-sm">
-                                            <div class="avatar-name"><%= current_user.full_name %></div>
-                                            <div><small>Mailbox</small></div>
-                                        </div>
-                                    </div>
+                                  <div class="inbox-avatar">
+                                    <% if current_user.picture_url != "" %>
+                                      <img class="img-circle border-green" src="<%= current_user.picture_url %>">
+                                    <% else %>
+                                      <%= image_tag 'avatar.png', class: "img-circle border-green" %>
+                                    <% end %>
+                                      <div class="inbox-avatar-text hidden-xs hidden-sm">
+                                          <div class="avatar-name"><%= current_user.full_name %></div>
+                                          <div><small>Mailbox</small></div>
+                                      </div>
+                                  </div>
                                 </div>
                                 <div class="col-xs-8">
                                     <div class="inbox-toolbar btn-toolbar">

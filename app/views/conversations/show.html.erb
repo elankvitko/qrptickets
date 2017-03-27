@@ -9,7 +9,12 @@
                         <div class="mailbox-header">
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <div class="inbox-avatar"><%= image_tag "avatar.png", class: "img-circle border-green" %>
+                                    <div class="inbox-avatar">
+                                      <% if current_user.picture_url != "" %>
+                                        <img class="img-circle border-green" src="<%= current_user.picture_url %>">
+                                      <% else %>
+                                        <%= image_tag 'avatar.png', class: "img-circle border-green" %>
+                                      <% end %>
                                         <div class="inbox-avatar-text hidden-xs hidden-sm">
                                             <div class="avatar-name"><%= current_user.full_name %></div>
                                             <div><small>Mailbox</small></div>
@@ -52,7 +57,11 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-9 p-0 inbox-mail">
                                     <div class="inbox-avatar p-20 border-btm">
-                                        <%= image_tag "avatar.png", class: "border-green hidden-xs hidden-sm" %>
+                                      <% if current_user.picture_url != "" %>
+                                        <img class="border-green hidden-xs hidden-sm" src="<%= current_user.picture_url %>">
+                                      <% else %>
+                                        <%= image_tag 'avatar.png', class: "border-green hidden-xs hidden-sm" %>
+                                      <% end %>
                                         <div class="inbox-avatar-text">
                                             <div class="avatar-name"><strong>From: <%= conversation.originator.full_name %></strong>
                                             </div>
