@@ -23,7 +23,11 @@
       <%= link_to( mailbox_inbox_path ) do %>
         <i class="ti-email"></i> <span>Mail</span>
         <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
+            <% if @unread > 0 %>
+              <small class="label pull-right bg-red"><%= @unread %></small>
+            <% else %>
+              <i class="fa fa-angle-left pull-right"></i>
+            <% end %>
         </span>
       <% end %>
     </li>

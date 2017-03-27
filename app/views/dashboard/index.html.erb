@@ -21,15 +21,15 @@
                         <div class="panel-body">
                             <div class="message_inner">
                                 <div class="message_widgets">
-                                    <!-- <a href="#">
-                                        <div class="inbox-item">
-                                            <div class="inbox-item-img"><%= image_tag "avatar.png", class: 'img-circle' %></div>
-                                            <strong class="inbox-item-author">Naeem Khan</strong>
-                                            <span class="inbox-item-date">-13:40 PM</span>
-                                            <p class="inbox-item-text">Hey! there I'm available...</p>
-                                            <span class="profile-status available pull-right"></span>
-                                        </div>
-                                    </a> -->
+                                  <% @inbox.each do | mail | %>
+                                    <%= link_to( conversation_path( mail ) ) do %>
+                                      <div class="inbox-item">
+                                        <div class="inbox-item-img"><%= image_tag "avatar.png", class: "img-circle" %></div>
+                                        <strong class="inbox-item-author"><%= mailbox.inbox.first.recipients.select { |message| message.full_name != current_user.full_name }[ 0 ].full_name %></strong>
+                                        <p class="inbox-item-text">Subject: <%= mail.subject %></p>
+                                      </div>
+                                    <% end %>
+                                  <% end %>
                                 </div>
                             </div>
                         </div>
