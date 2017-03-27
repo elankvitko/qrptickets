@@ -88,13 +88,13 @@ Rails.application.configure do
 
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: "smtp.office365.com",
     port: 587,
-    domain: "example.com",
-    authentication: "plain",
+    domain: "",
+    authentication: "login",
     enable_starttls_auto: true,
-    user_name: ENV[ "GMAIL_USERNAME" ],
-    password: ENV[ "GMAIL_PASSWORD" ]
+    user_name: ENV[ "OFFICE_USERNAME" ],
+    password: ENV[ "OFFICE_PASSWORD" ]
   }
 
   config.action_mailer.default_url_options = { host: 'qrptickets.herokuapp.com' }
