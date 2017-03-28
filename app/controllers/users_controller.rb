@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def edit
+    @unread = mailbox.inbox(:unread => true).count
     @user = current_user
   end
 
