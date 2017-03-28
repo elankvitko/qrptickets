@@ -1,0 +1,54 @@
+<!-- Site wrapper -->
+<div class="wrapper">
+  <%= render 'items/header' %>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <%= render 'layouts/content_header' %>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-bd lobidrag">
+                        <div class="panel-heading">
+                            <div class="panel-title issue-heading">
+                                <h4>Fill out your item request below please:</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                          <%= form_for @item, :url => '/items' do |f| %>
+                            <div class="form-group">
+                              <%= f.hidden_field :user_id, value: current_user.id %>
+                              <label for="name">Item Name</label>
+                                <%= f.text_field :name %>
+                              <label for="qty">Quantity</label>
+                                <%= f.text_field :qty %>
+                              <label for="location">Choose a Location</label>
+                                <%= f.select :location, [
+                                                          [ 'Corporate Office' ],
+                                                          [ 'Coney Island Branac' ],
+                                                          [ 'Bedstuy' ],
+                                                          [ '1413' ],
+                                                          [ 'Blondell' ],
+                                                          [ 'Audubon' ],
+                                                          [ '96th St.' ],
+                                                          [ 'Columbus' ],
+                                                          [ 'Lexington Ave.' ],
+                                                          [ '2nd Ave.' ],
+                                                          [ 'Huntington' ],
+                                                          [ 'CUC-Huntington' ],
+                                                          [ 'CUC-Upper East Side' ],
+                                                          [ 'CUC-Upper West Side' ] ]
+                              %>
+                            <br>
+                              <%= f.submit 'Submit', class: "btn btn-primary" %>
+                            </div>
+                          <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</div>

@@ -1,0 +1,100 @@
+<!-- Site wrapper -->
+<div class="wrapper">
+    <%= render 'items/header' %>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <%= render 'layouts/content_header' %>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                  <div class='ct-link'>
+                    <%= link_to '+ Order New Item', new_item_path %>
+                  </div>
+                    <div class="panel panel-bd lobidrag">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Filter</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <input type="text" class="form-control input-sm m-b-15" id="filter" placeholder="Search in table">
+                                <table id="example1" class="footable table table-bordered toggle-arrow-tiny" data-page-size="20" data-filter=#filter>
+                                    <thead>
+                                        <tr>
+                                            <th>Item Name</th>
+                                            <th>Name of Requestee</th>
+                                            <th>Email</th>
+                                            <th>Location</th>
+                                            <th>Status</th>
+                                            <th>Edit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% @items.each do | item | %>
+                                        <tr class='view-change'>
+                                            <td><%= item.name %></td>
+                                            <td><%= item.user.full_name %></td>
+                                            <td><%= item.user.email %></td>
+                                            <td><%= item.location %></td>
+                                            <td><%= item.status %></td>
+                                            <td class="item-change-td">
+                                              <%= form_for item do |f| %>
+                                                <%= f.hidden_field :id, value: item.id %>
+                                                  <% if item.status != "Ordered" %>
+                                                    <input type="checkbox" value="Ordered" id="checkit-<%= item.id %>" name="status" class="update_check" />
+                                                    <label for="checkit-<%= item.id %>">Ordered?</label>
+                                                  <% end %>
+                                                  <input type="checkbox" value="delete" id="deleteit-<%= item.id %>" name="status" class="update_check" />
+                                                  <label for="deleteit-<%= item.id %>">Delete?</label>
+                                              <% end %>
+                                            </td>
+                                        </tr>
+                                      <% end %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6">
+                                                <ul class="pagination pull-right"></ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+</div>
+
+<script>
+  "use strict"; // Start of use strict
+
+  // Footable example 2
+  $('#example1').footable();
+
+  $( '.update_check' ).on( 'change', function( e ) {
+    e.preventDefault();
+
+    var target = e.target;
+    var form = $( target ).parent()[ 0 ]
+
+    var type = form.method;
+    var url = form.action;
+    var data = $( form ).serialize();
+
+    $.ajax({
+      type: 'put',
+      url: url,
+      data: data
+    }).done( function( response ) {
+
+    });
+  });
+</script>

@@ -10,6 +10,19 @@
       <% end %>
     </li>
 
+    <li class="active">
+      <%= link_to( mailbox_inbox_path ) do %>
+      <i class="ti-email"></i> <span>Mail</span>
+      <span class="pull-right-container">
+        <% if @unread > 0 %>
+        <small class="label pull-right bg-red"><%= @unread %></small>
+        <% else %>
+        <i class="fa fa-angle-left pull-right"></i>
+        <% end %>
+      </span>
+      <% end %>
+    </li>
+
     <li>
       <%= link_to( ticket_index_path ) do %>
         <i class="ti-layout"></i> <span>My Tickets</span>
@@ -19,15 +32,11 @@
       <% end %>
     </li>
 
-    <li class="active">
-      <%= link_to( mailbox_inbox_path ) do %>
-        <i class="ti-email"></i> <span>Mail</span>
+    <li>
+      <%= link_to( items_path ) do %>
+        <i class="fa fa-globe"></i> <span>Order Supplies</span>
         <span class="pull-right-container">
-            <% if @unread > 0 %>
-              <small class="label pull-right bg-red"><%= @unread %></small>
-            <% else %>
-              <i class="fa fa-angle-left pull-right"></i>
-            <% end %>
+            <i class="fa fa-angle-left pull-right"></i>
         </span>
       <% end %>
     </li>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root :to => 'dashboard#index'
 
   resources :contact, :ticket
-  resources :users
+  resources :users, :items
 
 
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
