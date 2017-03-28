@@ -21,7 +21,7 @@
                         <div class="panel-body">
                             <div class="message_inner">
                                 <div class="message_widgets">
-                                  <% @inbox.each do | mail | %>
+                                  <% @unread_conversations.each do | mail | %>
                                     <%= link_to( conversation_path( mail ) ) do %>
                                       <div class="inbox-item">
                                         <div class="inbox-item-img">

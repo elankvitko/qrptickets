@@ -17,6 +17,10 @@ class ConversationsController < ApplicationController
   end
 
   def show
+    if params[ "sent" ]
+      @tagger = true
+    end
+
     @unread = mailbox.inbox(:unread => true).count
     @receipts = conversation.receipts_for(current_user).reverse
     # mark conversation as read

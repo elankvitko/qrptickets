@@ -47,9 +47,13 @@
                                     <div class="mailbox-content">
                                       <% @sent.each do | mail | %>
                                         <% if !mail.recipients.select { |obj| obj.full_name != current_user.full_name }.empty? %>
-                                          <%= link_to( conversation_path( mail.id ), class: "inbox_item unread" ) do %>
+                                          <%= link_to( conversation_path( mail.id, :sent => "sent" ), class: "inbox_item unread" ) do %>
                                             <div class="inbox-avatar">
-                                              <%= image_tag "avatar.png", class: "border-green hidden-xs hidden-sm" %>
+                                              <% if mail.recipients.select { |obj| obj.full_name != current_user.full_name }.first.picture_url != "" %>
+                                                <img src="<%= mail.recipients.select { |obj| obj.full_name != current_user.full_name }.first.picture_url %>" alt="">
+                                              <% else %>
+                                                <%= image_tag "avatar.png", class: "border-green hidden-xs hidden-sm" %>
+                                              <% end %>
                                               <div class="inbox-avatar-text">
                                                   <div class="avatar-name"><%= mail.recipients.select { |obj| obj.full_name != current_user.full_name }.first.full_name %></div>
                                                   <div><small><span class="bg-green badge avatar-text">></span><span><strong>Subject:</strong><span> <%= mail.subject %></span></span></small></div>

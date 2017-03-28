@@ -1,5 +1,7 @@
 class TicketController < ApplicationController
   def index
+    @unread = mailbox.inbox(:unread => true).count
+
     if current_user.admin
       @tickets = Ticket.order( :id )
     else

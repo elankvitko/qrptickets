@@ -4,6 +4,14 @@ class DashboardController < ApplicationController
   def index
     @inbox = mailbox.inbox
     @active = :inbox
+    @unread_conversations = []
+
+    @inbox.each do | mail |
+      if mail.is_unread?(current_user)
+        @unread_conversations << mail
+      end
+    end
+
     @unread = mailbox.inbox(:unread => true).count
     @level_1 = Ticket.where( "level = '1'" ).length
     @level_2 = Ticket.where( "level = '2'" ).length

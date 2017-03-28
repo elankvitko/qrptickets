@@ -49,6 +49,8 @@
                                             <h6>Mailbox</h6>
                                             <% if @receipts.first.trashed %>
                                               <%= render 'mailbox/trash_nav' %>
+                                            <% elsif @tagger %>
+                                              <%= render 'mailbox/sent_nav' %>
                                             <% else %>
                                               <%= render 'mailbox/inbox_nav' %>
                                             <% end %>
@@ -57,14 +59,18 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-9 p-0 inbox-mail">
                                     <div class="inbox-avatar p-20 border-btm">
-                                      <% if current_user.picture_url != "" %>
-                                        <img class="border-green hidden-xs hidden-sm" src="<%= current_user.picture_url %>">
+                                      <% last_sender = conversation.messages.sort_by { |message| message.created_at }.last.sender %>
+                                      <% other_sender = conversation.recipients.select { |obj| obj != last_sender }.first %>
+
+                                      <% if last_sender.picture_url != "" %>
+                                        <img class="border-green hidden-xs hidden-sm" src="<%= last_sender.picture_url %>">
                                       <% else %>
                                         <%= image_tag 'avatar.png', class: "border-green hidden-xs hidden-sm" %>
                                       <% end %>
                                         <div class="inbox-avatar-text">
-                                            <div class="avatar-name"><strong>From: <%= conversation.originator.full_name %></strong>
+                                            <div class="avatar-name"><strong>From: <%= last_sender.full_name %></strong>
                                             </div>
+                                            <div><small><strong>To: </strong><%= other_sender.full_name %></small></div>
                                             <div><small><strong>Subject: </strong><%= conversation.subject %></small></div>
                                         </div>
                                     </div>
