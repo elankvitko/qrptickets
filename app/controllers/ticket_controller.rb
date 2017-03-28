@@ -10,6 +10,7 @@ class TicketController < ApplicationController
   end
 
   def new
+    @unread = mailbox.inbox(:unread => true).count
     @ticket = Ticket.new
     @ticket_number = Ticket.all.length + 1
   end
