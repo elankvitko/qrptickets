@@ -3,7 +3,12 @@ class ItemsController < ApplicationController
 
   def index
     @unread = mailbox.inbox(:unread => true).count
-    @items = Item.all.sort_by { |obj| obj.created_at }
+
+    if current_user.order_admin
+      @items = Item.all.sort_by { |obj| obj.created_at }
+    else
+      @items = Item.where( user_id: current_user.id ).sort
+    end
   end
 
   def new
