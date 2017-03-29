@@ -15,6 +15,8 @@ class ItemsController < ApplicationController
     @item = Item.new( item_params )
 
     if @item.save
+      OrdersMailer.new_order.deliver_now
+
       redirect_to items_path
     end
   end
