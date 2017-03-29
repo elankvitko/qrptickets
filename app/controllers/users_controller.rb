@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def edit
     @unread = mailbox.inbox(:unread => true).count
     @user = current_user

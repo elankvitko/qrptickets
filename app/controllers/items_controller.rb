@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @unread = mailbox.inbox(:unread => true).count
     @items = Item.all.sort_by { |obj| obj.created_at }

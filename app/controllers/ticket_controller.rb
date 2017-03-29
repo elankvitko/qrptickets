@@ -1,4 +1,6 @@
 class TicketController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @unread = mailbox.inbox(:unread => true).count
 
