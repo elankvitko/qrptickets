@@ -1,9 +1,15 @@
 <header class="main-header">
-    <a href="index.html" class="logo"> <!-- Logo -->
-        <span class="logo-lg">
-            <%= image_tag "logo.png" %>
-        </span>
-    </a>
+  <%= link_to( root_path, class: "logo" ) do %>
+    <span class="logo-lg">
+      <%= image_tag "logo.png" %>
+    </span>
+  <% end %>
+
+  <%= link_to( root_path, class: "logo cure-logo" ) do %>
+    <span class="logo-lg">
+      <%= image_tag "logo-cure.png" %>
+    </span>
+  <% end %>
 </header>
 
 <aside class="main-sidebar">
@@ -20,6 +26,7 @@
             </div>
             <div class="info">
                 <p><%= current_user.full_name %></p>
+                <%= link_to "Change Avatar", edit_user_path( current_user ), class: "change-avatar-link" %>
             </div>
         </div>
         <!-- search form -->

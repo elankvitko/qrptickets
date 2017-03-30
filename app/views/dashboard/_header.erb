@@ -1,9 +1,15 @@
 <header class="main-header">
-    <a href="index.html" class="logo"> <!-- Logo -->
-        <span class="logo-lg">
-            <%= image_tag "logo.png" %>
-        </span>
-    </a>
+    <%= link_to( root_path, class: "logo" ) do %>
+      <span class="logo-lg">
+        <%= image_tag "logo.png" %>
+      </span>
+    <% end %>
+
+    <%= link_to( root_path, class: "logo cure-logo" ) do %>
+      <span class="logo-lg">
+        <%= image_tag "logo-cure.png" %>
+      </span>
+    <% end %>
 </header>
 
 <aside class="main-sidebar">

@@ -667,7 +667,7 @@ hr {
     color: #37a000;
     width: 68px;
     float: left;
-    margin-top: -4px;
+    margin-top: -50px;
     line-height: 0;
 }
 
@@ -815,7 +815,7 @@ hr {
 
 .main-sidebar {
     position: absolute;
-    top: 0;
+    top: 60px;
     left: 0;
     padding-top: 60px;
     min-height: 100%;
@@ -6138,4 +6138,8 @@ pre .arg {
 
 .item-change-td {
   width: 170px;
+}
+
+.cure-logo {
+  clear: both;
 }
