@@ -2,7 +2,6 @@ class TicketController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    binding.pry
     @unread = mailbox.inbox(:unread => true).count
 
     if current_user.admin
