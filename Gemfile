@@ -27,6 +27,7 @@ gem 'chosen-rails'
 gem 'devise'
 gem 'mailboxer'
 gem 'cloudinary'
+gem 'slack-api'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

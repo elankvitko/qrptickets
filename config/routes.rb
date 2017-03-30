@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
 
+  get '/slack' => "slack#index"
 
   # conversations
   resources :conversations do
