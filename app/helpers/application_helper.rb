@@ -5,6 +5,11 @@ module ApplicationHelper
 
   def find_me( email )
     me = USERS.select { |obj| obj[ 'profile' ][ 'email' ] == email }
-    my_picture = me.first[ 'profile' ][ 'image_192' ]
+
+    if me.empty?
+      return false
+    else
+      my_picture = me.first[ 'profile' ][ 'image_192' ]
+    end
   end
 end

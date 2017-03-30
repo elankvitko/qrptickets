@@ -4,6 +4,10 @@ class UsersController < ApplicationController
   def edit
     @unread = mailbox.inbox(:unread => true).count
     @user = current_user
+
+    if params[ "warning" ]
+      @warning = "We couldn't find an active slack account for Quick RX or Cure Urgent Care using your email. Please contact an administrator to get invited to Slack and then link your avatar, or you may upload one below!"
+    end
   end
 
   def update
