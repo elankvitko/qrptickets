@@ -40,7 +40,14 @@
                                             <td><%= ticket.user.email %></td>
                                             <td><%= ticket.location %></td>
                                             <td><%= ticket.status %></td>
-                                            <td><%= raw( ticket.body ) %></td>
+                                            <td>
+                                              <%= raw( ticket.body ) %>
+                                              <% if current_user.admin %>
+                                                <br>
+                                                <br>
+                                                <%= link_to "Mark Complete", edit_ticket_path( ticket ) %>
+                                              <% end %>
+                                            </td>
                                         </tr>
                                       <% end %>
                                     </tbody>

@@ -2,6 +2,7 @@ class TicketController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    binding.pry
     @unread = mailbox.inbox(:unread => true).count
 
     if current_user.admin
@@ -32,6 +33,10 @@ class TicketController < ApplicationController
         @ticket = Ticket.find_by( ticket_number: params[ 'id' ] )
         @ticket.update_attributes( viewed: true )
       end
+    else
+      @ticket = Ticket.find( params[ 'id' ] )
+      @ticket.update_attributes( status: 'Complete' )
+      redirect_to ticket_index_path
     end
   end
 
