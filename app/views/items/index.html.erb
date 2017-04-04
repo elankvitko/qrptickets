@@ -35,7 +35,11 @@
                                     <tbody>
                                       <% @items.each do | item | %>
                                         <tr class='view-change'>
-                                            <td><%= item.name %></td>
+                                            <% if item.name.include? "http" %>
+                                              <td><a href="<%= item.name %>" target="_blank">Link To Item</a></td>
+                                            <% else %>
+                                              <td><%= item.name %></td>
+                                            <% end %>
                                             <td><%= item.user.full_name %></td>
                                             <td><%= item.user.email %></td>
                                             <td><%= item.location %></td>
