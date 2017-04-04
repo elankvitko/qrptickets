@@ -1,7 +1,9 @@
 class TicketController < ApplicationController
   before_action :authenticate_user!
+  include TicketHelper
 
   def index
+    # SDK.search('/', Ticket.last.filename)[0]["path"]
     @unread = mailbox.inbox(:unread => true).count
 
     if current_user.admin
@@ -18,11 +20,16 @@ class TicketController < ApplicationController
   end
 
   def create
-    if request.xhr?
-      ticket = Ticket.new( ticket_params )
-      if ticket.save
-        redirect_to ticket_index_path
-      end
+    ticket = Ticket.new( ticket_params )
+
+    if params[ :ticket ][ :uploaded ]
+      file = params[ :ticket ][ :uploaded ]
+      ticket.update_attributes( filename: file.original_filename )
+      dropbox.upload file.original_filename, file.tempfile
+    end
+
+    if ticket.save
+      redirect_to ticket_index_path
     end
   end
 
@@ -36,6 +43,16 @@ class TicketController < ApplicationController
       @ticket = Ticket.find( params[ 'id' ] )
       @ticket.update_attributes( status: 'Complete' )
       redirect_to ticket_index_path
+    end
+  end
+
+  def dl
+    if request.xhr?
+      ticket = Ticket.find( params[ "ticket" ] )
+      path = SDK.search( '/', ticket.filename )[ 0 ][ "path" ]
+      @url = SDK.media( path )[ "url" ]
+      @ticket_number = params[ "ticket" ]
+      render partial: 'js_response', layout: false, locals: { url: @url, ticket_number: @ticket_number }
     end
   end
 

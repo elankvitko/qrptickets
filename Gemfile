@@ -28,6 +28,8 @@ gem 'devise'
 gem 'mailboxer'
 gem 'cloudinary'
 gem 'slack-api'
+gem "dropbox-api"
+gem "dropbox-sdk"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

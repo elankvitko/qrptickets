@@ -40,12 +40,14 @@
                                             <td><%= ticket.user.email %></td>
                                             <td><%= ticket.location %></td>
                                             <td><%= ticket.status %></td>
-                                            <td>
+                                            <td class="download-td">
                                               <%= raw( ticket.body ) %>
                                               <% if current_user.admin %>
                                                 <br>
                                                 <br>
                                                 <%= link_to "Mark Complete", edit_ticket_path( ticket ) %>
+                                                <br>
+                                                <%= link_to "Download Attached File", download_path, id: ticket.id, class: 'download_path' %>
                                               <% end %>
                                             </td>
                                         </tr>
@@ -90,6 +92,22 @@
       data: data
     }).done( function( response ) {
       return true
+    });
+  });
+
+  $( '.download_path' ).on( 'click', function( e ) {
+    e.preventDefault();
+
+    var url = e.target.href;
+    var data = "ticket=" + e.target.id
+
+    $.ajax({
+      type: 'get',
+      url: url,
+      data: data
+    }).done( function( response ) {
+      var tag = $( response )[ 0 ];
+      tag.click();
     });
   });
 </script>

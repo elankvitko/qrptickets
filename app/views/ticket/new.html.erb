@@ -16,11 +16,13 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                          <%= form_for @ticket, :url => '/ticket' do |f| %>
+                          <%= form_for @ticket, :url => '/ticket', :enctype =>"multipart/form-data" do |f| %>
                             <div class="form-group">
                               <%= f.hidden_field :user_id, value: current_user.id %>
                               <%= f.hidden_field :ticket_number, value: @ticket_number %>
                               <%= f.text_area :body, id: 'some-textarea', class: "form-control", rows: "15", placeholder: "Enter text ..." %>
+                              <br>
+                              <%= f.file_field :uploaded %>
                               <br>
                               <label for="location">Choose a Location</label>
                               <%= f.select :location, [
@@ -56,21 +58,4 @@
     "use strict"; // Start of use strict
     //bootstrap-wysihtml5
     $('#some-textarea').wysihtml5();
-
-
-    $( 'form' ).on( 'submit', function( e ) {
-      e.preventDefault();
-      var target = e.target
-
-      var url = target.action;
-      var type = target.method;
-      var data = $( target ).serialize();
-
-      $.ajax({
-        type: type,
-        url: url,
-        data: data
-      }).done( function( response ) {
-      });
-    });
 </script>
