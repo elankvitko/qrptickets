@@ -46,8 +46,10 @@
                                                 <br>
                                                 <br>
                                                 <%= link_to "Mark Complete", edit_ticket_path( ticket ) %>
-                                                <br>
-                                                <%= link_to "Download Attached File", download_path, id: ticket.id, class: 'download_path' %>
+                                                  <% if ticket.filename != nil %>
+                                                    <br>
+                                                    <%= link_to "Download Attached File", download_path, id: ticket.id, class: 'download_path' %>
+                                                  <% end %>
                                               <% end %>
                                             </td>
                                         </tr>
