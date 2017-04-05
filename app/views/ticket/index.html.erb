@@ -42,20 +42,46 @@
                                             <td><%= ticket.status %></td>
                                             <td class="download-td">
                                               <%= raw( ticket.body ) %>
+                                              <% if !ticket.links.empty? %>
+                                                <br>
+                                                <br>
+                                                <% sent_tickets = ticket.links.select { | link | link.user.full_name != 'Elan Kvitko' } %>
+                                                <% received_tickets = ticket.links.select { | link | link.user.full_name == 'Elan Kvitko' } %>
+
+                                                <% if !sent_tickets.empty? %>
+                                                  <h4 class="files-head">Sent Files:</h4>
+
+                                                  <% sent_tickets.each_with_index do | link, idx | %>
+                                                    <%= link_to "Download - #{ link.filename }", download_path, id: ticket.id, class: 'download_path' %>
+                                                    <% if idx != ticket.links.length - 1 %>
+                                                      <br>
+                                                    <% end %>
+                                                  <% end %>
+                                                <% end %>
+
+                                                <% if !received_tickets.empty? %>
+                                                  <br>
+                                                  <h4 class="files-head">Received Files:</h4>
+
+                                                  <% received_tickets.each_with_index do | link, idx | %>
+                                                    <%= link_to "Download - #{ link.filename }", download_path, id: ticket.id, class: 'download_path' %>
+                                                    <% if idx != ticket.links.length - 1 %>
+                                                      <br>
+                                                    <% end %>
+                                                  <% end %>
+                                                <% end %>
+                                              <% end %>
+
                                               <% if current_user.admin %>
                                                 <br>
                                                 <br>
+                                                <%= form_for ticket do |f| %>
+                                                  <%= f.hidden_field :user_id, value: ticket.user.id %>
+                                                  <%= f.hidden_field :ticket_id, value: ticket.id %>
+                                                  <%= f.file_field :upload, class: "form-control" %>
+                                                  <%= f.submit "Submit File" %>
+                                                <% end %>
                                                 <%= link_to "Mark Complete", edit_ticket_path( ticket ) %>
-                                                  <% if !ticket.links.empty? %>
-                                                    <br>
-                                                    <br>
-                                                    <% ticket.links.each_with_index do | link, idx | %>
-                                                      <%= link_to "Download - #{ link.filename }", download_path, id: ticket.id, class: 'download_path' %>
-                                                      <% if idx != ticket.links.length - 1 %>
-                                                        <br>
-                                                      <% end %>
-                                                    <% end %>
-                                                  <% end %>
                                               <% end %>
                                             </td>
                                         </tr>

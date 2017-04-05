@@ -29,7 +29,7 @@ class TicketController < ApplicationController
 
       files.each do | k,v |
         file = v
-        Link.create( filename: file.original_filename, ticket_id: ticket.id )
+        Link.create( filename: file.original_filename, ticket_id: ticket.id, user_id: current_user.id )
         dropbox.upload file.original_filename, file.tempfile
       end
     else
@@ -50,6 +50,16 @@ class TicketController < ApplicationController
       @ticket.update_attributes( status: 'Complete' )
       redirect_to ticket_index_path
     end
+  end
+
+  def update
+    ticket = Ticket.find( params[ :ticket ][ :ticket_id ] )
+    file = params[ :ticket ][ :upload ]
+
+    Link.create( filename: file.original_filename, ticket_id: ticket.id, user_id: current_user.id )
+    dropbox.upload file.original_filename, file.tempfile
+
+    redirect_to ticket_index_path
   end
 
   def dl
