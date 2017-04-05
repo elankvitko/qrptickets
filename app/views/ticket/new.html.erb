@@ -22,7 +22,11 @@
                               <%= f.hidden_field :ticket_number, value: @ticket_number %>
                               <%= f.text_area :body, id: 'some-textarea', class: "form-control", rows: "15", placeholder: "Enter text ..." %>
                               <br>
-                              <%= f.file_field :uploaded %>
+                              <div class="file-upload-fields">
+                                <%= f.file_field :uploaded_0 %>
+                              </div>
+                              <br>
+                              <button type="button" name="button" class="add-file">Add Another File</button>
                               <br>
                               <label for="location">Choose a Location</label>
                               <%= f.select :location, [
@@ -58,4 +62,12 @@
     "use strict"; // Start of use strict
     //bootstrap-wysihtml5
     $('#some-textarea').wysihtml5();
+
+    var idx = 1
+
+    $( 'button.add-file' ).on( 'click', function( e ) {
+      var div = document.getElementsByClassName( 'file-upload-fields' )[ 0 ];
+      $( div ).append( "<input type='file' name='ticket[uploaded_" + idx + "]' id='ticket_uploaded_" + idx + "'>" );
+      idx += 1
+    });
 </script>

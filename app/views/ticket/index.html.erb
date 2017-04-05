@@ -46,9 +46,15 @@
                                                 <br>
                                                 <br>
                                                 <%= link_to "Mark Complete", edit_ticket_path( ticket ) %>
-                                                  <% if ticket.filename != nil %>
+                                                  <% if !ticket.links.empty? %>
                                                     <br>
-                                                    <%= link_to "Download Attached File", download_path, id: ticket.id, class: 'download_path' %>
+                                                    <br>
+                                                    <% ticket.links.each_with_index do | link, idx | %>
+                                                      <%= link_to "Download - #{ link.filename }", download_path, id: ticket.id, class: 'download_path' %>
+                                                      <% if idx != ticket.links.length - 1 %>
+                                                        <br>
+                                                      <% end %>
+                                                    <% end %>
                                                   <% end %>
                                               <% end %>
                                             </td>
@@ -101,13 +107,14 @@
     e.preventDefault();
 
     var url = e.target.href;
-    var data = "ticket=" + e.target.id
+    var data = "dl=" + e.target.innerHTML.substring( 11, e.target.innerHTML.length ) + "&ticket=" + e.target.id
 
     $.ajax({
       type: 'get',
       url: url,
       data: data
     }).done( function( response ) {
+      debugger;
       var tag = $( response )[ 0 ];
       tag.click();
     });

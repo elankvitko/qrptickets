@@ -22,15 +22,21 @@ class TicketController < ApplicationController
   def create
     ticket = Ticket.new( ticket_params )
 
-    if params[ :ticket ][ :uploaded ]
-      file = params[ :ticket ][ :uploaded ]
-      ticket.update_attributes( filename: file.original_filename )
-      dropbox.upload file.original_filename, file.tempfile
+    files = params[:ticket].select { |obj, l| obj.include? "uploaded" }
+
+    if !files.empty?
+      ticket.save
+
+      files.each do | k,v |
+        file = v
+        Link.create( filename: file.original_filename, ticket_id: ticket.id )
+        dropbox.upload file.original_filename, file.tempfile
+      end
+    else
+      ticket.save
     end
 
-    if ticket.save
-      redirect_to ticket_index_path
-    end
+    redirect_to ticket_index_path
   end
 
   def edit
@@ -49,10 +55,10 @@ class TicketController < ApplicationController
   def dl
     if request.xhr?
       ticket = Ticket.find( params[ "ticket" ] )
-      path = SDK.search( '/', ticket.filename )[ 0 ][ "path" ]
-      @url = SDK.media( path )[ "url" ]
-      @ticket_number = params[ "ticket" ]
-      render partial: 'js_response', layout: false, locals: { url: @url, ticket_number: @ticket_number }
+      dl_search = SDK.search( '/', params[ "dl" ] )[ 0 ][ "path" ]
+      path = SDK.media( dl_search )[ "url" ]
+
+      render partial: 'js_response', layout: false, locals: { url: path, ticket_number: ticket.id }
     end
   end
 
