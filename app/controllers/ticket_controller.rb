@@ -62,7 +62,7 @@ class TicketController < ApplicationController
     dl_search = SDK.search( '/', file.original_filename )[ 0 ][ "path" ]
     path = SDK.media( dl_search )[ "url" ]
 
-    FilesMailer.new_file_notification.new( file.original_filename, path, ticket.user.full_name, ticket.user.email  ).deliver_now
+    FilesMailer.new_file_notification( file.original_filename, path, ticket.user.full_name, ticket.user.email  ).deliver_now
 
     redirect_to ticket_index_path
   end
