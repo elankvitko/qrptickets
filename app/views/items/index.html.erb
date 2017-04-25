@@ -25,6 +25,7 @@
                                     <thead>
                                         <tr>
                                             <th>Item Name</th>
+                                            <th>Qty.</th>
                                             <th>Name of Requestee</th>
                                             <th>Email</th>
                                             <th>Location</th>
@@ -40,6 +41,7 @@
                                             <% else %>
                                               <td><%= item.name %></td>
                                             <% end %>
+                                            <td><%= item.qty %></td>
                                             <td><%= item.user.full_name %></td>
                                             <td><%= item.user.email %></td>
                                             <td><%= item.location %></td>
