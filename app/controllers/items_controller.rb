@@ -5,9 +5,9 @@ class ItemsController < ApplicationController
     @unread = mailbox.inbox(:unread => true).count
 
     if current_user.order_admin
-      @items = Item.all.sort_by { |obj| obj.created_at }
+      @items = Item.all.sort_by { |obj| obj.created_at }.reverse
     else
-      @items = Item.where( user_id: current_user.id ).sort
+      @items = Item.where( user_id: current_user.id ).sort.reverse
     end
   end
 

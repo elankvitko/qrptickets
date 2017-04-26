@@ -1,6 +1,6 @@
 class OrdersMailer < ApplicationMailer
   def new_order
-    mail to: "enovikova@qrpgroup.com",
+    mail to: "lidiya@qrpgroup.com",
          subject: "New Order Request"
   end
 end
