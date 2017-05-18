@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :contact, :ticket
   resources :users, :items
 
+  resources :projects
+
 
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
