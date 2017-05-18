@@ -30,7 +30,9 @@
                                             <th>Location</th>
                                             <th>Approval Status</th>
                                             <th>Status of Project</th>
-                                            <th>Admin</th>
+                                            <% if current_user.project_approver %>
+                                              <th>Admin</th>
+                                            <% end %>
                                             <th data-hide="all">Description</th>
                                         </tr>
                                     </thead>
@@ -51,11 +53,13 @@
                                             <% end %>
                                           <% end %>
                                           <td></td>
-                                          <td>
-                                            <span>
-                                              <%= link_to( "Approve", edit_project_path( project ), class: "approve-project" ) %> | <%= link_to( "Deny", edit_project_path( project ), class: "approve-project" ) %>
-                                            </span>
-                                          </td>
+                                          <% if current_user.project_approver %>
+                                            <td>
+                                              <span>
+                                                <%= link_to( "Approve", edit_project_path( project ), class: "approve-project" ) %> | <%= link_to( "Deny", edit_project_path( project ), class: "approve-project" ) %>
+                                              </span>
+                                            </td>
+                                          <% end %>
                                           <td><%= project.description %></td>
                                         </tr>
                                       <% end %>
