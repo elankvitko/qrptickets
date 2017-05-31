@@ -1,0 +1,53 @@
+<!-- Site wrapper -->
+<div class="wrapper">
+    <%= render 'eworker/header' %>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <%= render 'layouts/content_header' %>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                  <div class="panel panel-bd lobidrag">
+                      <div class="panel-heading">
+                      </div>
+                      <div class="panel-body">
+                          <div class="table-responsive">
+                            <h3>Please select a report type from the dropdown</h3>
+
+                            <select>
+                              <option disabled selected value> -- select an option -- </option>
+                              <option value="report-pb" class="pb-selected">Compare Billing and Purchasing Files</option>
+                            </select>
+
+                            <%= render 'pb' %>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </section> <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+</div>
+
+<script>
+  "use strict"; // Start of use strict
+
+  // Footable example 2
+  $('#example1').footable();
+  $( ".hide-upload" ).hide();
+
+  $( "select" ).on( "change", function( e ) {
+    $( '.generic-hide' ).hide();
+
+    var prop = $('select').find(":selected")[ 0 ];
+    var className = $( prop ).attr( "class" );
+    var lookup = "." + className + "-show"
+
+    $( lookup ).addClass( 'generic-hide' )
+    $( lookup ).show();
+  });
+</script>

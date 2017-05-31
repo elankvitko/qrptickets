@@ -23,7 +23,7 @@ class TicketController < ApplicationController
     ticket = Ticket.new( ticket_params )
 
     files = params[:ticket].select { |obj, l| obj.include? "uploaded" }
-
+    
     if !files.empty?
       ticket.save
 

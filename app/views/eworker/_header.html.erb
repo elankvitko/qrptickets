@@ -1,0 +1,46 @@
+<header class="main-header">
+  <%= link_to( root_path, class: "logo" ) do %>
+    <span class="logo-lg">
+      <%= image_tag "logo.png" %>
+    </span>
+  <% end %>
+
+  <%= link_to( root_path, class: "logo cure-logo" ) do %>
+    <span class="logo-lg">
+      <%= image_tag "logo-cure.png" %>
+    </span>
+  <% end %>
+</header>
+
+<aside class="main-sidebar">
+    <!-- sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel text-center">
+            <div class="image">
+              <% if current_user.picture_url != "" %>
+                <img class="img-circle" src="<%= current_user.picture_url %>">
+              <% else %>
+                <%= image_tag "avatar.png", class: 'img-circle' %>
+              <% end %>
+            </div>
+            <div class="info">
+                <p><%= current_user.full_name %></p>
+                <%= link_to "Change Avatar", edit_user_path( current_user ), class: "change-avatar-link" %>
+                <a href="/slack" class="change-avatar-link slack-link">Link Your Slack Avatar</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form> <!-- /.search form -->
+        <!-- sidebar menu -->
+
+        <%= render 'eworker/nav' %>
+    </div> <!-- /.sidebar -->
+</aside>

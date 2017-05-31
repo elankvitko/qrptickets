@@ -51,6 +51,15 @@
     </li>
 
     <li>
+      <%= link_to( eworker_index_path ) do %>
+        <i class="ti-layout"></i> <span>Excel Worker</span>
+        <span class="pull-right-container">
+          <i class=" fa fa-angle-left pull-right "></i>
+        </span>
+      <% end %>
+    </li>
+
+    <li>
       <%= link_to( destroy_user_session_path, :method => 'delete' ) do %>
         <i class="fa fa-sign-out"></i> <span>Log Out</span>
         <span class="pull-right-container">

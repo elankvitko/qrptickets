@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :tickets
   has_many :items
   has_many :links
-  has_many :projects 
+  has_many :projects
+  has_many :csvlocations
 
   acts_as_messageable
 

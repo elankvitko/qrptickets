@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :users, :items
 
   resources :projects
+  resources :eworker
+  resources :csvlocations
+
 
 
   get "mailbox/inbox" => "mailbox#inbox", as: :mailbox_inbox

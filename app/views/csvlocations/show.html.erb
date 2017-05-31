@@ -1,0 +1,64 @@
+<!-- Site wrapper -->
+<div class="wrapper">
+    <%= render 'projects/header' %>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <%= render 'layouts/content_header' %>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-bd lobidrag">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4>Filter</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <input type="text" class="form-control input-sm m-b-15" id="filter" placeholder="Search in table">
+                                <table class="footable table table-bordered toggle-arrow-tiny" data-page-size="10" data-filter=#filter>
+                                    <thead>
+                                        <tr>
+                                            <% @cell_headers = @cell_blocks[ 0 ] %>
+                                            <% @cell_headers.each do | k,v | %>
+                                              <th><%= k %></th>
+                                            <% end %>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <% @cell_blocks.each do | cell | %>
+                                          <tr>
+                                            <% cell.each do | k,v | %>
+                                              <td><%= v %></td>
+                                            <% end %>
+                                          </tr>
+                                      <% end %>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="6">
+                                                <ul class="pagination pull-right"></ul>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%= render 'layouts/footer' %>
+</div>
+
+<script>
+  "use strict"; // Start of use strict
+
+  // Footable example 2
+  $('#example1').footable();
+  });
+</script>

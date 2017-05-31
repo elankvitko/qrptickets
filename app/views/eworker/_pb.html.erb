@@ -1,0 +1,14 @@
+<%= form_for @csvlocation, :html => { :class => 'submit_file billing_purchasing_form pb-selected-show', method: "post" } do |f| %>
+  <input type="hidden" name="compare-type" value="pb">
+  <h3>Step 1.</h3>
+  <p>Upload Billing File</p>
+  <%= f.file_field :url, name: "billing_filename", class: "file_upload_field" %>
+  <br>
+  <h3>Step 2.</h3>
+  <p>Upload Purchasing File</p>
+  <%= f.file_field :url, name: "purchasing_filename", class: "file_upload_field" %>
+  <br>
+  <h3>Step 3.</h3>
+  <p>Submit For Processing</p>
+  <%= f.submit "Submit Files", class: "submit-files" %>
+<% end %>

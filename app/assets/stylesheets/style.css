@@ -3224,3 +3224,8 @@ div.form-holder {
 div.new-item-form-area form p {
 	margin: 0;
 }
+
+
+.billing_purchasing_form {
+	display: none;
+}
