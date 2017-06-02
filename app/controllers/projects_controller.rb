@@ -26,12 +26,14 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find( params[ "id" ] )
 
-    if params[ "status" ] == "Approve"
-      @project.update_attributes( approved: true )
-      render partial: "projects/approved", layout: false
-    else
-      @project.update_attributes( approved: false )
-      render partial: "projects/denied", layout: false
+    if request.xhr?
+      if params[ "status" ] == "Approve"
+        @project.update_attributes( approved: true )
+        render partial: "projects/approved", layout: false, locals: { id: params[ "id" ] }
+      else
+        @project.update_attributes( approved: false )
+        render partial: "projects/denied", layout: false, locals: { id: params[ "id" ] }
+      end
     end
   end
 

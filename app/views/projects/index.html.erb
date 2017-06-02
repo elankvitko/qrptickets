@@ -43,15 +43,20 @@
     e.preventDefault();
 
     var url = e.target.href
-    var data = "status=" + e.target.innerText
+    var data = "status=" + e.target.innerText + "&id=" + e.target.className.replace( /^\D+/g, '' )
 
     $.ajax({
       method: "get",
       url: url,
       data: data
     }).done( function( response ) {
-      var changeElement = document.getElementsByClassName( "change-status" )[ 0 ]
-      changeElement.innerHTML = $( response ).html();
+      var text = response.split( "<br>" )[ 0 ].trim();
+      var idHTML = response.split( "<br>" )[ 1 ].trim();
+      var id = $( idHTML ).text();
+      var className = "change-status " + id;
+
+      var changeElement = document.getElementsByClassName( className )[ 0 ];
+      changeElement.innerHTML = $( text ).html();
     });
   });
 </script>
