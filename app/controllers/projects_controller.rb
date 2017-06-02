@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
     @project = Project.new( create_project_params )
 
     if @project.save
+      NotifyLidiyaMailer.new_notification.deliver_now
       redirect_to projects_path
     end
   end

@@ -21,53 +21,7 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <input type="text" class="form-control input-sm m-b-15" id="filter" placeholder="Search in table">
-                                <table id="example1" class="footable table table-bordered toggle-arrow-tiny" data-page-size="10" data-filter=#filter>
-                                    <thead>
-                                        <tr>
-                                            <th>Item Name</th>
-                                            <th>Qty.</th>
-                                            <th>Name of Requestee</th>
-                                            <th>Email</th>
-                                            <th>Location</th>
-                                            <th>Status</th>
-                                            <th>Edit</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                      <% @items.each do | item | %>
-                                        <tr class='view-change'>
-                                            <% if item.name.include? "http" %>
-                                              <td><a href="<%= item.name %>" target="_blank">Link To Item</a></td>
-                                            <% else %>
-                                              <td><%= item.name %></td>
-                                            <% end %>
-                                            <td><%= item.qty %></td>
-                                            <td><%= item.user.full_name %></td>
-                                            <td><%= item.user.email %></td>
-                                            <td><%= item.location %></td>
-                                            <td><%= item.status %></td>
-                                            <td class="item-change-td">
-                                              <%= form_for item do |f| %>
-                                                <%= f.hidden_field :id, value: item.id %>
-                                                  <% if item.status != "Ordered" %>
-                                                    <input type="checkbox" value="Ordered" id="checkit-<%= item.id %>" name="status" class="update_check" />
-                                                    <label for="checkit-<%= item.id %>">Ordered?</label>
-                                                  <% end %>
-                                                  <input type="checkbox" value="delete" id="deleteit-<%= item.id %>" name="status" class="update_check" />
-                                                  <label for="deleteit-<%= item.id %>">Delete?</label>
-                                              <% end %>
-                                            </td>
-                                        </tr>
-                                      <% end %>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="6">
-                                                <ul class="pagination pull-right"></ul>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                <%= render 'items_table' %>
                             </div>
                         </div>
                     </div>

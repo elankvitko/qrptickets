@@ -21,57 +21,7 @@
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <input type="text" class="form-control input-sm m-b-15" id="filter" placeholder="Search in table">
-                                <table id="example1" class="footable table table-bordered toggle-arrow-tiny" data-page-size="10" data-filter=#filter>
-                                    <thead>
-                                        <tr>
-                                            <th>Project Title</th>
-                                            <th>Requester</th>
-                                            <th>Email</th>
-                                            <th>Location</th>
-                                            <th>Approval Status</th>
-                                            <th>Status of Project</th>
-                                            <% if current_user.project_approver %>
-                                              <th>Admin</th>
-                                            <% end %>
-                                            <th data-hide="all">Description</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                      <% @projects.each do | project | %>
-                                        <tr>
-                                          <td><%= project.title %></td>
-                                          <td><%= project.user.full_name %></td>
-                                          <td><%= project.user.email %></td>
-                                          <td><%= project.location %></td>
-                                          <% if project.approved %>
-                                            <td class="change-status">Approved</td>
-                                          <% else %>
-                                            <% if project.updated_at > project.created_at %>
-                                              <td class="change-status">Denied</td>
-                                            <% else %>
-                                              <td class="change-status">In Review</td>
-                                            <% end %>
-                                          <% end %>
-                                          <td></td>
-                                          <% if current_user.project_approver %>
-                                            <td>
-                                              <span>
-                                                <%= link_to( "Approve", edit_project_path( project ), class: "approve-project" ) %> | <%= link_to( "Deny", edit_project_path( project ), class: "approve-project" ) %>
-                                              </span>
-                                            </td>
-                                          <% end %>
-                                          <td><%= project.description %></td>
-                                        </tr>
-                                      <% end %>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="6">
-                                                <ul class="pagination pull-right"></ul>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                                <%= render 'projects_table' %>
                             </div>
                         </div>
                     </div>
