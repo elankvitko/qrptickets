@@ -37,7 +37,11 @@
               </span>
             </td>
           <% end %>
-          <td><%= project.description %></td>
+          <td>
+            <p>
+              <%= raw project.description %>
+            </p>
+          </td>
         </tr>
       <% end %>
     </tbody>
