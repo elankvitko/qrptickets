@@ -25,9 +25,15 @@ class CsvlocationsController < ApplicationController
       IO.copy_stream( upload_purchasing, "purchasing.csv" )
 
       compare_pb
+
+      file = File.join( Rails.root, 'file.csv' )
+      dropbox.upload( 'Controls_Comparison.csv', File.read( file ) )
     end
 
-    redirect_to eworker_index_path
+    dl_search = SDK.search( '/', "Controls_Comparison.csv" )[ 0 ][ "path" ]
+    path = SDK.media( dl_search )[ "url" ]
+    # redirect_to eworker_index_path
+    redirect_to controller: 'eworker', action: 'index', dl: path
   end
 
   def show

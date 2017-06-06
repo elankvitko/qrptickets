@@ -14,17 +14,24 @@
                       </div>
                       <div class="panel-body">
                           <div class="table-responsive">
-                            <h3>Please select a report type from the dropdown</h3>
+                            <% if params[ "dl" ] %>
+                              <h3>Download Below</h3>
 
-                            <select>
-                              <option disabled selected value> -- select an option -- </option>
-                              <option value="report-pb" class="pb-selected">Compare Billing and Purchasing Files</option>
-                            </select>
+                              <p><a href="<%= params[ "dl" ] %>">Download Report Now!</a></p>
+                            <% else %>
+                              <h3 class="select-report">Please select a report type from the dropdown</h3>
+
+                              <select class='select-report-dropdown'>
+                                <option disabled selected value> -- select an option -- </option>
+                                <option value="report-pb" class="pb-selected">Compare Controls</option>
+                              </select>
+                            <% end %>
 
                             <%= render 'pb' %>
                           </div>
                       </div>
                   </div>
+                  <a href="#"></a>
                 </div>
             </div>
         </section> <!-- /.content -->

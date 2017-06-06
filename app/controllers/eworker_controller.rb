@@ -1,6 +1,7 @@
 class EworkerController < ApplicationController
   require 'csv'
   require 'open-uri'
+  include TicketHelper
 
   def index
     if !current_user.excel_admin?
